@@ -521,6 +521,13 @@ call UnimpairedMapTransform('xml_decode',']x')
 
 " Section: Activation
 
-call s:maps()
+augroup unimpaired
+  autocmd!
+  autocmd VimEnter * call s:maps()
+augroup END
+
+if get(v:, 'vim_did_enter', !has('vim_starting'))
+  call s:maps()
+endif
 
 " vim:set sw=2 sts=2:
